@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Día 3 — El Valor de Esperar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(145deg,#1a1410,#2c1e17,#1a1410);
+font-family:'Montserrat',sans-serif;
+color:#f5e6d8;
+text-align:center;
+overflow:hidden;
+transition:1s ease;
+}
+
+.container{
+max-width:700px;
+padding:40px;
+animation:fadeIn 2s ease forwards;
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:42px;
+margin-bottom:20px;
+letter-spacing:1px;
+}
+
+.subtitle{
+font-size:18px;
+opacity:0.8;
+margin-bottom:40px;
+line-height:1.6;
+}
+
+button{
+padding:15px 35px;
+font-size:16px;
+border:none;
+background:#6f4e37;
+color:white;
+border-radius:30px;
+cursor:pointer;
+transition:0.4s ease;
+}
+
+button:hover{
+background:#8b5e3c;
+transform:scale(1.05);
+}
+
+#countdown{
+font-family:'Playfair Display',serif;
+font-size:90px;
+margin-top:30px;
+opacity:0;
+transition:1s ease;
+}
+
+.final-message{
+opacity:0;
+transform:translateY(20px);
+transition:2s ease;
+line-height:1.8;
+font-size:18px;
+}
+
+.small{
+margin-top:30px;
+opacity:0.7;
+font-size:14px;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="intro">
+<h1>Día 3</h1>
+<p class="subtitle">
+No todo reto es correr.<br>
+Algunos son aprender a esperar.
+</p>
+<button onclick="startChallenge()">Acepto el reto</button>
+</div>
+
+<div class="container" id="challenge" style="display:none;">
+<p class="subtitle">
+Esta vez no tienes que hacer nada.<br>
+Solo quédate aquí.<br>
+Confía.
+</p>
+<div id="countdown">10</div>
+</div>
+
+<div class="container final-message" id="final" style="display:none;">
+<p>
+A veces lo más difícil no es hacer algo…<br>
+Es esperar sin saber qué viene.<br><br>
+
+Pero cuando algo se construye paso a paso,<br>
+se siente diferente.<br><br>
+
+Mañana no habrá reto.<br>
+Mañana habrá algo más claro.<br><br>
+
+Gracias por llegar hasta aquí.
+</p>
+
+<div class="small">
+Nivel 3 completado 🤎
+</div>
+</div>
+
+<script>
+function startChallenge(){
+document.getElementById("intro").style.display="none";
+document.getElementById("challenge").style.display="block";
+
+let time=10;
+let countdown=document.getElementById("countdown");
+countdown.style.opacity="1";
+
+let interval=setInterval(()=>{
+time--;
+countdown.textContent=time;
+
+if(time<=0){
+clearInterval(interval);
+document.getElementById("challenge").style.display="none";
+let final=document.getElementById("final");
+final.style.display="block";
+setTimeout(()=>{
+final.style.opacity="1";
+final.style.transform="translateY(0)";
+},100);
+}
+},1000);
+}
+</script>
+
+</body>
+</html>
